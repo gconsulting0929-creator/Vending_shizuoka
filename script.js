@@ -7,7 +7,6 @@ const STAGES=[
 ];
 
 const monitor=document.getElementById("monitor");
-const stageBg=document.getElementById("stage-bg");
 const statusIcon=document.getElementById("status-icon");
 const risks=document.querySelectorAll(".risk");
 
@@ -20,7 +19,8 @@ function applyStage(value){
   const stage=getStage(wbgt);
 
   monitor.className=`monitor stage-${stage.key}`;
-  stageBg.className=`stage-bg stage-${stage.key}`;
+
+  document.body.style.background=getComputedStyle(monitor).getPropertyValue("--stage");
 
   document.querySelectorAll(".js-status").forEach(el=>el.textContent=stage.label);
   document.querySelectorAll(".js-message").forEach(el=>el.textContent=stage.message);
@@ -29,9 +29,7 @@ function applyStage(value){
   statusIcon.src=stage.icon;
   statusIcon.alt=stage.label;
 
-  risks.forEach(el=>{
-    el.classList.toggle("active",el.dataset.stage===stage.key);
-  });
+  risks.forEach(el=>el.classList.toggle("active",el.dataset.stage===stage.key));
 }
 
 function updateClock(){
@@ -49,11 +47,10 @@ function updateClock(){
 }
 
 function fitViewport(){
-  const sx=window.innerWidth/640;
-  const sy=window.innerHeight/192;
-  monitor.style.transform=`scale(${sx},${sy})`;
+  const scaleX=window.innerWidth/640;
+  const scaleY=window.innerHeight/192;
+  monitor.style.transform=`scale(${scaleX},${scaleY})`;
 }
-window.addEventListener("resize",fitViewport);
 
 const params=new URLSearchParams(location.search);
 const wbgt=Number(params.get("wbgt")??21);
@@ -67,3 +64,4 @@ applyStage(wbgt);
 updateClock();
 setInterval(updateClock,1000);
 fitViewport();
+window.addEventListener("resize",fitViewport);
