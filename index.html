@@ -2,96 +2,81 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=640, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>熱中症（WBGT）モニタリングシステム</title>
-  <link rel="stylesheet" href="style.css?v=20260714-5">
+  <link rel="stylesheet" href="style.css?v=20260714-6">
 </head>
 <body>
-  <main id="monitor" class="monitor stage-safe">
-    <section class="side-panel">
-      <div class="side-header">熱中症（WBGT）</div>
-      <div class="side-body">
+  <div id="screen-wrap">
+    <main id="monitor" class="monitor stage-safe">
+
+      <section class="panel side left">
+        <div class="side-head">熱中症（WBGT）</div>
         <div class="side-status js-status">安全</div>
         <div class="side-message js-message">適宜に水分補給</div>
         <div class="side-card">
           <div class="wbgt-pill">WBGT</div>
           <div class="side-value js-wbgt">21.0</div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="center-panel">
-      <div class="center-header">
-        <div class="title">熱中症（WBGT）モニタリングシステム</div>
-        <div class="date-time">
-          <div id="current-date" class="date">2026.07.16（金）</div>
-          <div id="current-time" class="time">15:00</div>
-        </div>
-      </div>
-
-      <div class="center-body">
-        <div class="overview">
-          <div class="overview-copy">
-            <div class="center-status js-status">安全</div>
-            <div class="center-message js-message">適宜に水分補給</div>
+      <section class="panel center">
+        <div class="center-head">
+          <div class="title">熱中症（WBGT）モニタリングシステム</div>
+          <div class="date-time">
+            <div id="current-date" class="date">2026.07.16（金）</div>
+            <div id="current-time" class="time">15:00</div>
           </div>
-          <img id="status-icon" class="status-icon" src="images/safe.png" alt="安全">
         </div>
 
-        <div class="cards">
-          <div class="card">
-            <img src="images/temperature.png" alt="" class="card-icon temp-icon">
-            <div class="card-copy">
-              <div class="card-label">温度</div>
-              <div class="card-value"><span id="temperature">24.0</span><small>℃</small></div>
-            </div>
-          </div>
+        <div class="center-status js-status">安全</div>
+        <div class="center-message js-message">適宜に水分補給</div>
+        <img id="status-icon" class="status-icon" src="images/safe.png" alt="安全">
 
-          <div class="card">
-            <img src="images/humidity.png" alt="" class="card-icon">
-            <div class="card-copy">
-              <div class="card-label">湿度</div>
-              <div class="card-value"><span id="humidity">40</span><small>％</small></div>
-            </div>
-          </div>
+        <div class="card temp-card">
+          <img src="images/temperature.png" class="card-icon temp-icon" alt="">
+          <div class="card-label">温度</div>
+          <div class="card-value"><span id="temperature">24.0</span><small>℃</small></div>
+        </div>
 
-          <div class="card wbgt-card">
-            <div class="mini-wbgt">WBGT</div>
-            <div class="card-value js-wbgt">21.0</div>
-          </div>
+        <div class="card humidity-card">
+          <img src="images/humidity.png" class="card-icon" alt="">
+          <div class="card-label">湿度</div>
+          <div class="card-value"><span id="humidity">40</span><small>％</small></div>
+        </div>
 
-          <div class="card">
-            <img src="images/clock.png" alt="" class="card-icon clock-icon">
-            <div class="card-copy">
-              <div class="card-label">更新時刻</div>
-              <div id="updated-time" class="card-value updated-value">15:00</div>
-            </div>
-          </div>
+        <div class="card wbgt-card">
+          <div class="mini-pill">WBGT</div>
+          <div class="card-value js-wbgt">21.0</div>
+        </div>
+
+        <div class="card update-card">
+          <img src="images/clock.png" class="card-icon clock-icon" alt="">
+          <div class="card-label">更新時刻</div>
+          <div id="updated-time" class="card-value update-value">15:00</div>
         </div>
 
         <div class="risk-scale">
-          <div class="risk risk-safe active" data-stage="safe"><strong>安全</strong><span>21未満</span></div>
-          <div class="risk risk-caution" data-stage="caution"><strong>注意</strong><span>21〜25</span></div>
-          <div class="risk risk-warning" data-stage="warning"><strong>警戒</strong><span>25〜28</span></div>
-          <div class="risk risk-severe" data-stage="severe"><strong>厳重警戒</strong><span>28〜31</span></div>
-          <div class="risk risk-danger" data-stage="danger"><strong>危険</strong><span>31以上</span></div>
+          <div class="risk risk-safe active" data-stage="safe"><b>安全</b><span>21未満</span></div>
+          <div class="risk risk-caution" data-stage="caution"><b>注意</b><span>21〜25</span></div>
+          <div class="risk risk-warning" data-stage="warning"><b>警戒</b><span>25〜28</span></div>
+          <div class="risk risk-severe" data-stage="severe"><b>厳重警戒</b><span>28〜31</span></div>
+          <div class="risk risk-danger" data-stage="danger"><b>危険</b><span>31以上</span></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="side-panel">
-      <div class="side-header">熱中症（WBGT）</div>
-      <div class="side-body">
+      <section class="panel side right">
+        <div class="side-head">熱中症（WBGT）</div>
         <div class="side-status js-status">安全</div>
         <div class="side-message js-message">適宜に水分補給</div>
         <div class="side-card">
           <div class="wbgt-pill">WBGT</div>
           <div class="side-value js-wbgt">21.0</div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <script src="script.js?v=20260714-5"></script>
+    </main>
+  </div>
+  <script src="script.js?v=20260714-6"></script>
 </body>
 </html>
