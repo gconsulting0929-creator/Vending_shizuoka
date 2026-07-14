@@ -1,9 +1,8 @@
-# WBGT Monitor v7 Rebuilt
+# WBGT Monitor v8 PPT Layout
 
-초기 시안 기준으로 HTML 구조부터 다시 작성한 640×192 버전입니다.
+PPT 시안 기준으로 다시 배치한 GitHub Pages용 파일입니다.
 
-GitHub Pages 저장소에서 아래 파일을 덮어쓰고 Commit changes를 누르세요.
-
+업로드:
 - index.html
 - style.css
 - script.js
