@@ -1,16 +1,18 @@
 {
   "location": "静岡市",
   "station": "50331",
-  "temperature": 26.0,
-  "humidity": 50,
-  "wbgt": 23.0,
-  "weatherObservedAt": "2026-07-14T15:00:00+09:00",
-  "wbgtObservedAt": "2026-07-14T15:00:00+09:00",
-  "updatedAt": "2026-07-14T15:00:00+09:00",
   "source": {
     "temperature": "気象庁",
     "humidity": "気象庁",
     "wbgt": "環境省"
   },
+  "temperature": 28.0,
+  "humidity": 80.0,
+  "weatherObservedAt": "2026-07-14T18:30:00+09:00",
+  "wbgt": 25.9,
+  "wbgtObservedAt": "2026-07-14T18:00:00+09:00",
+  "wbgtClass": 1,
+  "wbgtQuality": 4.0,
+  "updatedAt": "2026-07-14T18:41:38+09:00",
   "errors": []
 }
