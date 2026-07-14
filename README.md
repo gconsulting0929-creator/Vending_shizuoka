@@ -1,27 +1,21 @@
-# 静岡市 WBGT Monitor
+# 静岡市 WBGT Monitor v10
 
-GitHub Pages용 실시간 WBGT 모니터입니다.
-
-## 데이터
+실시간 데이터 연결 수정본입니다.
 
 - 온도·습도: 気象庁 アメダス 静岡（50331）
-- WBGT: 環境省 熱中症予防情報サイト 静岡（50331）
-- GitHub Actions가 10분마다 `data.json`을 갱신
-- 웹페이지는 1분마다 `data.json`을 다시 읽음
+- WBGT: 環境省 静岡（50331）
+- GitHub Actions: 10분마다 갱신
+- 화면의 更新時刻: 환경성 WBGT 관측 시각
+- WBGT 값으로 단계·배경색·문구·캐릭터 자동 변경
 
-## 처음 올린 뒤 실행
+## 업로드 후
 
-1. GitHub 저장소에 모든 파일과 폴더를 업로드합니다.
-2. `Actions` 탭을 엽니다.
-3. `Update Shizuoka Weather`를 선택합니다.
-4. `Run workflow`를 눌러 처음 한 번 수동 실행합니다.
-5. 초록색 체크가 뜨면 `data.json`이 실데이터로 바뀝니다.
+1. 저장소에 전체 폴더 구조 그대로 업로드
+2. Actions → Update Shizuoka Weather
+3. Run workflow 실행
+4. 초록색 체크 확인
+5. data.json을 열어 실제 값 확인
 
-## GitHub Actions 권한 오류가 날 때
-
-`Settings → Actions → General → Workflow permissions`에서
-`Read and write permissions`를 선택한 뒤 저장합니다.
-
-## 출처 표기
-
-표시 데이터는 気象庁 및 環境省의 공개 정보를 사용합니다.
+Push 권한 오류 시:
+Settings → Actions → General → Workflow permissions →
+Read and write permissions → Save

@@ -61,7 +61,7 @@ function setWeather(data){
     applyStage(wbgt);
   }
 
-  lastUpdatedAt=data.updatedAt||data.wbgtObservedAt||data.weatherObservedAt||null;
+  lastUpdatedAt=data.wbgtObservedAt||data.weatherObservedAt||data.updatedAt||null;
   document.getElementById("updated-time").textContent=formatHHMM(lastUpdatedAt);
 }
 

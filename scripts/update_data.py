@@ -2,9 +2,7 @@
 from __future__ import annotations
 
 import json
-import os
 import sys
-import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -12,120 +10,132 @@ from typing import Any
 import requests
 
 JST = timezone(timedelta(hours=9))
-JMA_STATION = "50331"       # 静岡地方気象台
-WBGT_STATION = "50331"      # 環境省 WBGT 静岡地点
-OUTPUT = Path(__file__).resolve().parents[1] / "data.json"
+JMA_STATION = "50331"   # 静岡地方気象台
+WBGT_STATION = "50331"  # 環境省 静岡
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / "data.json"
 
 HEADERS = {
-    "User-Agent": "Vending-shizuhoka-WBGT-monitor/1.0",
+    "User-Agent": "Vending-shizuhoka-WBGT-monitor/1.1",
     "Accept": "application/json,text/plain,*/*",
 }
 
-def get_json(url: str, *, params: dict[str, Any] | None = None) -> dict[str, Any]:
-    response = requests.get(url, params=params, headers=HEADERS, timeout=30)
+def request(url: str, *, params: list[tuple[str, str]] | None = None) -> requests.Response:
+    response = requests.get(url, params=params, headers=HEADERS, timeout=45)
     response.raise_for_status()
-    return response.json()
+    return response
 
-def get_text(url: str) -> str:
-    response = requests.get(url, headers=HEADERS, timeout=30)
-    response.raise_for_status()
-    return response.text.strip()
+def read_previous() -> dict[str, Any]:
+    try:
+        return json.loads(OUTPUT.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
 
-def parse_jma_time(value: str) -> datetime:
-    # Example: 2026-07-14T18:10:00+09:00
-    return datetime.fromisoformat(value)
+def fetch_jma() -> dict[str, Any]:
+    latest_text = request(
+        "https://www.jma.go.jp/bosai/amedas/data/latest_time.txt"
+    ).text.strip()
+    latest = datetime.fromisoformat(latest_text)
 
-def get_jma_weather() -> dict[str, Any]:
-    latest_url = "https://www.jma.go.jp/bosai/amedas/data/latest_time.txt"
-    latest_text = get_text(latest_url)
-    latest = parse_jma_time(latest_text)
-
-    # Try the latest map and a few preceding 10-minute maps.
-    for step in range(0, 7):
-        target = latest - timedelta(minutes=10 * step)
-        key = target.strftime("%Y%m%d%H%M%S")
+    # 最新時刻のファイルに地点データがまだ入っていない場合があるため、
+    # 10分ずつ過去へ戻って探索する。
+    for offset in range(0, 13):
+        observed = latest - timedelta(minutes=10 * offset)
+        key = observed.strftime("%Y%m%d%H%M%S")
         url = f"https://www.jma.go.jp/bosai/amedas/data/map/{key}.json"
+
         try:
-            payload = get_json(url)
-        except requests.RequestException:
+            payload = request(url).json()
+        except Exception:
             continue
 
         station = payload.get(JMA_STATION)
-        if not station:
+        if not isinstance(station, dict):
             continue
 
         temp = station.get("temp")
         humidity = station.get("humidity")
+
         temperature = temp[0] if isinstance(temp, list) and temp else None
         humidity_value = humidity[0] if isinstance(humidity, list) and humidity else None
 
-        if temperature is not None and humidity_value is not None:
-            return {
-                "temperature": float(temperature),
-                "humidity": float(humidity_value),
-                "weatherObservedAt": target.isoformat(),
-            }
+        if temperature is None or humidity_value is None:
+            continue
 
-    raise RuntimeError("気象庁アメダスから静岡の温度・湿度を取得できませんでした")
+        return {
+            "temperature": float(temperature),
+            "humidity": float(humidity_value),
+            "weatherObservedAt": observed.astimezone(JST).isoformat(),
+        }
 
-def compact_timestamp(dt: datetime) -> str:
+    raise RuntimeError("静岡の温度・湿度を取得できませんでした")
+
+def compact(dt: datetime) -> str:
     return dt.astimezone(JST).strftime("%Y%m%d%H%M%S")
 
 def parse_wbgt_date(value: str) -> datetime:
     return datetime.strptime(value, "%Y/%m/%d %H:%M:%S").replace(tzinfo=JST)
 
-def get_wbgt() -> dict[str, Any]:
-    now = datetime.now(JST)
-    start = now - timedelta(hours=6)
+def fetch_wbgt_type(data_type: int, start: datetime, end: datetime) -> list[dict[str, Any]]:
     params = [
-        ("data_type", "0"),
-        ("data_type", "1"),
+        ("data_type", str(data_type)),
         ("location_type", "1"),
         ("wbgt_nos", WBGT_STATION),
-        ("date_from", compact_timestamp(start)),
-        ("date_to", compact_timestamp(now)),
+        ("date_from", compact(start)),
+        ("date_to", compact(end)),
     ]
-
-    response = requests.get(
+    payload = request(
         "https://www.wbgt.env.go.jp/api/v1/getSurveyData",
         params=params,
-        headers=HEADERS,
-        timeout=30,
-    )
-    response.raise_for_status()
-    payload = response.json()
+    ).json()
 
     if payload.get("status") != "success":
-        raise RuntimeError(payload.get("errMsg") or "環境省WBGT API error")
+        raise RuntimeError(payload.get("errMsg") or f"WBGT API error ({data_type})")
 
-    records = payload.get("data") or []
-    valid = []
+    return payload.get("data") or []
+
+def fetch_wbgt() -> dict[str, Any]:
+    now = datetime.now(JST)
+    start = now - timedelta(hours=12)
+
+    records: list[dict[str, Any]] = []
+    errors: list[str] = []
+
+    # 静岡地点が推定値・実測値のどちらで提供されても取得できるように両方確認。
+    for data_type in (0, 1):
+        try:
+            records.extend(fetch_wbgt_type(data_type, start, now))
+        except Exception as exc:
+            errors.append(str(exc))
+
+    candidates: list[tuple[datetime, float, dict[str, Any]]] = []
     for record in records:
         try:
+            if str(record.get("wbgt_no")) != WBGT_STATION:
+                continue
+            observed = parse_wbgt_date(str(record["wbgt_date"]))
             value = float(record["wbgt_WO"])
-            observed = parse_wbgt_date(record["wbgt_date"])
         except (KeyError, TypeError, ValueError):
             continue
-        valid.append((observed, value, record))
+        candidates.append((observed, value, record))
 
-    if not valid:
-        raise RuntimeError("環境省WBGT APIから静岡の実況値を取得できませんでした")
+    if not candidates:
+        raise RuntimeError("静岡のWBGT実況値を取得できませんでした: " + " / ".join(errors))
 
-    observed, value, record = max(valid, key=lambda item: item[0])
+    observed, value, record = max(candidates, key=lambda item: item[0])
+
+    quality = record.get("wbgt_WI")
     return {
         "wbgt": value,
         "wbgtObservedAt": observed.isoformat(),
         "wbgtClass": int(record.get("wbgt_class", 0)),
-        "wbgtQuality": float(record["wbgt_WI"]) if record.get("wbgt_WI") not in (None, "") else None,
+        "wbgtQuality": float(quality) if quality not in (None, "") else None,
     }
 
-def read_previous() -> dict[str, Any]:
-    if not OUTPUT.exists():
-        return {}
-    try:
-        return json.loads(OUTPUT.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
+def copy_previous(result: dict[str, Any], previous: dict[str, Any], keys: tuple[str, ...]) -> None:
+    for key in keys:
+        if key in previous:
+            result[key] = previous[key]
 
 def main() -> int:
     previous = read_previous()
@@ -138,29 +148,31 @@ def main() -> int:
             "wbgt": "環境省",
         },
     }
-
     errors: list[str] = []
 
     try:
-        result.update(get_jma_weather())
+        result.update(fetch_jma())
     except Exception as exc:
         errors.append(f"JMA: {exc}")
-        for key in ("temperature", "humidity", "weatherObservedAt"):
-            if key in previous:
-                result[key] = previous[key]
+        copy_previous(
+            result,
+            previous,
+            ("temperature", "humidity", "weatherObservedAt"),
+        )
 
     try:
-        result.update(get_wbgt())
+        result.update(fetch_wbgt())
     except Exception as exc:
         errors.append(f"WBGT: {exc}")
-        for key in ("wbgt", "wbgtObservedAt", "wbgtClass", "wbgtQuality"):
-            if key in previous:
-                result[key] = previous[key]
+        copy_previous(
+            result,
+            previous,
+            ("wbgt", "wbgtObservedAt", "wbgtClass", "wbgtQuality"),
+        )
 
-    required = ("temperature", "humidity", "wbgt")
-    missing = [key for key in required if key not in result]
+    missing = [key for key in ("temperature", "humidity", "wbgt") if key not in result]
     if missing:
-        print("Missing required values:", ", ".join(missing), file=sys.stderr)
+        print(f"Missing required data: {', '.join(missing)}", file=sys.stderr)
         print("\n".join(errors), file=sys.stderr)
         return 1
 
