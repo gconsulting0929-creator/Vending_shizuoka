@@ -4,105 +4,106 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>熱中症（WBGT）モニタリングシステム</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260714-3">
 </head>
 <body>
   <div id="stage-bg" class="stage-bg stage-safe">
     <main id="monitor" class="monitor stage-safe">
-      <section class="side">
-        <header class="side-head">熱中症（WBGT）</header>
-        <div class="side-main">
+      <section class="side-panel">
+        <header class="side-header">熱中症（WBGT）</header>
+        <div class="side-body">
           <div class="side-status js-status">安全</div>
           <div class="side-message js-message">適宜に水分補給</div>
           <div class="side-card">
             <div class="wbgt-label">WBGT</div>
-            <div class="side-value js-wbgt">21.0</div>
+            <div class="side-wbgt js-wbgt">21.0</div>
           </div>
         </div>
       </section>
 
-      <section class="center">
-        <header class="center-head">
-          <div class="title">熱中症（WBGT）モニタリングシステム</div>
-          <div class="clock-block">
-            <div id="current-date" class="date">2026.07.16（金）</div>
-            <div id="current-time" class="time">15:00</div>
+      <section class="center-panel">
+        <header class="center-header">
+          <div class="system-title">熱中症（WBGT）モニタリングシステム</div>
+          <div class="header-clock">
+            <div id="current-date" class="current-date">2026.07.16（金）</div>
+            <div id="current-time" class="current-time">15:00</div>
           </div>
         </header>
 
-        <div class="center-main">
-          <div class="overview">
-            <div class="overview-copy">
+        <div class="center-body">
+          <div class="overview-row">
+            <div class="center-copy">
               <div class="center-status js-status">安全</div>
               <div class="center-message js-message">適宜に水分補給</div>
             </div>
             <img id="status-icon" class="status-icon" src="images/safe.png" alt="安全">
           </div>
 
-          <div class="metrics">
-            <div class="metric">
-              <img src="images/temperature.png" alt="" class="metric-icon temp-icon">
-              <div class="metric-text">
-                <div class="metric-title">温度</div>
-                <div class="metric-value"><span id="temperature">24.0</span><small>℃</small></div>
+          <div class="data-row">
+            <div class="data-card">
+              <img src="images/temperature.png" alt="" class="data-icon temp-icon">
+              <div class="data-content">
+                <div class="data-title">温度</div>
+                <div class="data-value"><span id="temperature">24.0</span><small>℃</small></div>
               </div>
             </div>
 
-            <div class="metric">
-              <img src="images/humidity.png" alt="" class="metric-icon">
-              <div class="metric-text">
-                <div class="metric-title">湿度</div>
-                <div class="metric-value"><span id="humidity">40</span><small>％</small></div>
+            <div class="data-card">
+              <img src="images/humidity.png" alt="" class="data-icon">
+              <div class="data-content">
+                <div class="data-title">湿度</div>
+                <div class="data-value"><span id="humidity">40</span><small>％</small></div>
               </div>
             </div>
 
-            <div class="metric metric-wbgt">
-              <div class="wbgt-mini">WBGT</div>
-              <div class="metric-value js-wbgt">21.0</div>
+            <div class="data-card wbgt-data-card">
+              <div class="mini-wbgt">WBGT</div>
+              <div class="data-value js-wbgt">21.0</div>
             </div>
 
-            <div class="metric">
-              <img src="images/clock.png" alt="" class="metric-icon clock-icon">
-              <div class="metric-text">
-                <div class="metric-title">更新時刻</div>
-                <div id="updated-time" class="metric-value update-time">15:00</div>
+            <div class="data-card">
+              <img src="images/clock.png" alt="" class="data-icon clock-icon">
+              <div class="data-content">
+                <div class="data-title">更新時刻</div>
+                <div id="updated-time" class="data-value update-value">15:00</div>
               </div>
             </div>
           </div>
 
-          <div class="scale">
-            <div class="level level-safe active" data-stage="safe">
+          <div class="risk-row">
+            <div class="risk risk-safe active" data-stage="safe">
               <strong>安全</strong><span>21未満</span>
             </div>
-            <div class="level level-caution" data-stage="caution">
+            <div class="risk risk-caution" data-stage="caution">
               <strong>注意</strong><span>21〜25</span>
             </div>
-            <div class="level level-warning" data-stage="warning">
+            <div class="risk risk-warning" data-stage="warning">
               <strong>警戒</strong><span>25〜28</span>
             </div>
-            <div class="level level-severe" data-stage="severe">
+            <div class="risk risk-severe" data-stage="severe">
               <strong>厳重警戒</strong><span>28〜31</span>
             </div>
-            <div class="level level-danger" data-stage="danger">
+            <div class="risk risk-danger" data-stage="danger">
               <strong>危険</strong><span>31以上</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="side">
-        <header class="side-head">熱中症（WBGT）</header>
-        <div class="side-main">
+      <section class="side-panel">
+        <header class="side-header">熱中症（WBGT）</header>
+        <div class="side-body">
           <div class="side-status js-status">安全</div>
           <div class="side-message js-message">適宜に水分補給</div>
           <div class="side-card">
             <div class="wbgt-label">WBGT</div>
-            <div class="side-value js-wbgt">21.0</div>
+            <div class="side-wbgt js-wbgt">21.0</div>
           </div>
         </div>
       </section>
     </main>
   </div>
-  <script src="script.js"></script>
+
+  <script src="script.js?v=20260714-3"></script>
 </body>
 </html>
