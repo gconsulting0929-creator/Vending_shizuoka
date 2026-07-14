@@ -1,30 +1,18 @@
-# WBGT Monitor — Step 1 UI
+# WBGT Monitor v2
 
-静岡市向けWBGTモニターの第一段階（画面デザイン）です。
+640×192固定レイアウトです。
 
-## Files
+- 左 128×192
+- 中央 384×192
+- 右 128×192
 
-- `index.html`
-- `style.css`
-- `script.js`
-- `images/`
-
-## Test
-
-Open `index.html`.
-
-You can test each WBGT stage with a query parameter:
+テスト例:
 
 - `?wbgt=20`
-- `?wbgt=23`
+- `?wbgt=23&temp=26&humidity=50`
 - `?wbgt=26`
 - `?wbgt=29`
 - `?wbgt=32`
 
-The page uses an exact internal canvas of 640×192 px:
-
-- Left: 128×192
-- Center: 384×192
-- Right: 128×192
-
-The canvas stretches to fill the browser viewport without black margins.
+ブラウザが640×192より大きい場合は、縦横比を崩さず均等に拡大します。
+余白部分も現在の警戒色で表示されるため、黒い画面にはなりません。
