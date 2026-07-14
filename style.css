@@ -19,14 +19,14 @@ body{background:#ffdb2d;font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Go
 }
 .center-head{left:0;width:384px}
 .title{
-  position:absolute;left:18px;top:12px;width:250px;
+  position:absolute;left:18px;top:12px;width:242px;
   font-size:16px;line-height:1;font-weight:1000;letter-spacing:-.8px;white-space:nowrap
 }
 .date-time{
-  position:absolute;right:16px;top:1px;width:88px;height:36px;text-align:center;overflow:hidden
+  position:absolute;right:10px;top:1px;width:98px;height:36px;text-align:center;overflow:hidden
 }
 .date{font-size:9px;line-height:1.05;font-weight:900;white-space:nowrap}
-.time{font-size:24px;line-height:.98;font-weight:1000;white-space:nowrap}
+.time{font-size:22px;line-height:1;font-weight:1000;white-space:nowrap}
 
 .side-status{
   position:absolute;left:0;top:50px;width:128px;height:50px;
@@ -48,24 +48,24 @@ body{background:#ffdb2d;font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Go
 .side-value{font-size:37px;line-height:.95;font-weight:1000;letter-spacing:-2px}
 
 .main-status{
-  position:absolute;left:22px;top:43px;width:160px;height:43px;
+  position:absolute;left:28px;top:48px;width:150px;height:38px;
   display:flex;align-items:center;justify-content:flex-start;
-  font-size:38px;line-height:1;font-weight:1000;letter-spacing:-2px;white-space:nowrap
+  font-size:36px;line-height:1;font-weight:1000;letter-spacing:-2px;white-space:nowrap
 }
 .main-message{
-  position:absolute;left:31px;top:86px;width:140px;height:19px;
+  position:absolute;left:38px;top:88px;width:135px;height:18px;
   display:flex;align-items:center;justify-content:flex-start;
-  font-size:15px;line-height:1;font-weight:1000;white-space:nowrap
+  font-size:14px;line-height:1;font-weight:1000;white-space:nowrap
 }
 .status-icon{
-  position:absolute;left:220px;top:40px;width:78px;height:78px;object-fit:contain
+  position:absolute;left:222px;top:39px;width:72px;height:72px;object-fit:contain
 }
 
 .metric{
-  position:absolute;top:107px;width:88px;height:43px;
+  position:absolute;top:108px;width:86px;height:41px;
   background:#fff;color:#050505;border-radius:7px;overflow:hidden
 }
-.temp{left:17px}.hum{left:109px}.wbgt{left:201px}.upd{left:293px}
+.temp{left:20px}.hum{left:110px}.wbgt{left:200px}.upd{left:290px}
 .metric-icon{
   position:absolute;left:7px;top:9px;width:18px;height:25px;object-fit:contain
 }
@@ -76,25 +76,25 @@ body{background:#ffdb2d;font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Go
 }
 .update-label{left:24px;width:60px}
 .metric-value{
-  position:absolute;top:17px;left:26px;width:59px;text-align:center;
-  font-size:23px;line-height:1;font-weight:1000;letter-spacing:-.8px;white-space:nowrap
+  position:absolute;top:17px;left:26px;width:57px;text-align:center;
+  font-size:21px;line-height:1;font-weight:1000;letter-spacing:-.7px;white-space:nowrap
 }
 .metric-value small{font-size:11px;font-weight:900}
 .mini-pill{
   position:absolute;top:4px;left:20px;font-size:10px;line-height:1;padding:2px 7px
 }
-.centered{left:0;width:88px}
-.update-value{left:24px;width:61px;font-size:19px}
+.centered{left:0;width:86px}
+.update-value{left:24px;width:58px;font-size:18px}
 
 .risk-scale{
-  position:absolute;left:23px;top:154px;width:338px;height:33px;
+  position:absolute;left:28px;top:153px;width:328px;height:34px;
   display:grid;grid-template-columns:repeat(5,1fr);border-radius:7px;overflow:visible
 }
 .risk{
   position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
   color:#111;font-weight:1000;line-height:1
 }
-.risk b{font-size:11px}.risk span{font-size:9px;margin-top:3px;font-weight:900}
+.risk b{font-size:10px}.risk span{font-size:9px;margin-top:3px;font-weight:900}
 .safe{background:#3491d3;color:#fff;border-radius:7px 0 0 7px}
 .caution{background:#ffdb2d}.warning{background:#ffbb31}
 .severe{background:#ff7900;color:#fff}.danger{background:#df1618;color:#fff;border-radius:0 7px 7px 0}
