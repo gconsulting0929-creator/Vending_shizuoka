@@ -7,24 +7,19 @@ const STAGES=[
 ];
 
 const monitor=document.getElementById("monitor");
-const wrap=document.getElementById("screen-wrap");
 const icon=document.getElementById("status-icon");
 const risks=document.querySelectorAll(".risk");
 
 function stageFor(v){
   return STAGES.find(s=>v>=s.min&&v<s.max)||STAGES[0];
 }
-
 function applyStage(v){
   const wbgt=Number.isFinite(Number(v))?Number(v):21;
   const s=stageFor(wbgt);
 
   monitor.className=`monitor stage-${s.key}`;
-  wrap.className=`stage-${s.key}`;
-
   const color=getComputedStyle(monitor).getPropertyValue("--stage");
   document.body.style.background=color;
-  wrap.style.background=color;
 
   document.querySelectorAll(".js-status").forEach(el=>el.textContent=s.label);
   document.querySelectorAll(".js-message").forEach(el=>el.textContent=s.message);
@@ -34,21 +29,19 @@ function applyStage(v){
   icon.alt=s.label;
   risks.forEach(el=>el.classList.toggle("active",el.dataset.stage===s.key));
 }
-
 function updateClock(){
   const now=new Date();
-  const w=["日","月","火","水","木","金","土"];
+  const week=["日","月","火","水","木","金","土"];
   const y=now.getFullYear();
   const m=String(now.getMonth()+1).padStart(2,"0");
   const d=String(now.getDate()).padStart(2,"0");
   const h=String(now.getHours()).padStart(2,"0");
   const min=String(now.getMinutes()).padStart(2,"0");
 
-  document.getElementById("current-date").textContent=`${y}.${m}.${d}（${w[now.getDay()]}）`;
+  document.getElementById("current-date").textContent=`${y}.${m}.${d}（${week[now.getDay()]}）`;
   document.getElementById("current-time").textContent=`${h}:${min}`;
   document.getElementById("updated-time").textContent=`${h}:${min}`;
 }
-
 function fit(){
   const sx=window.innerWidth/640;
   const sy=window.innerHeight/192;
