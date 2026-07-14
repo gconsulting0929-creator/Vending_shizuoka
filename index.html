@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=640, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>熱中症（WBGT）モニタリングシステム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="monitor" class="monitor" aria-label="熱中症WBGTモニタリング画面">
+    <section class="side-panel">
+      <div class="side-header">熱中症（WBGT）</div>
+      <div class="side-content">
+        <div class="side-status js-status">安全</div>
+        <div class="side-message js-message">適宜に水分補給</div>
+        <div class="side-wbgt-card">
+          <div class="wbgt-pill">WBGT</div>
+          <div class="side-wbgt js-wbgt">21.0</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="center-panel">
+      <header class="center-header">
+        <div class="system-title">熱中症（WBGT）モニタリングシステム</div>
+        <div class="date-time">
+          <div id="current-date" class="current-date">2026.07.16（金）</div>
+          <div id="current-time" class="current-time">15:00</div>
+        </div>
+      </header>
+
+      <div class="center-body">
+        <div class="status-overview">
+          <img id="status-icon" class="status-icon" src="images/safe.png" alt="安全">
+          <div class="center-status-copy">
+            <div class="center-status js-status">安全</div>
+            <div class="center-message js-message">適宜に水分補給</div>
+          </div>
+        </div>
+
+        <div class="data-cards">
+          <div class="data-card">
+            <img src="images/temperature.png" alt="" class="data-icon thermometer">
+            <div class="data-copy">
+              <div class="data-label">温度</div>
+              <div class="data-value"><span id="temperature">24.0</span><small>℃</small></div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <img src="images/humidity.png" alt="" class="data-icon">
+            <div class="data-copy">
+              <div class="data-label">湿度</div>
+              <div class="data-value"><span id="humidity">40</span><small>％</small></div>
+            </div>
+          </div>
+
+          <div class="data-card wbgt-card">
+            <div class="mini-wbgt-pill">WBGT</div>
+            <div class="data-value wbgt-value js-wbgt">21.0</div>
+          </div>
+
+          <div class="data-card">
+            <img src="images/clock.png" alt="" class="data-icon clock-icon">
+            <div class="data-copy">
+              <div class="data-label">更新時刻</div>
+              <div id="updated-time" class="data-value updated-value">15:00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="risk-scale" aria-label="WBGT警戒レベル">
+          <div class="risk-item risk-safe" data-stage="safe">
+            <span>安全</span><small>21未満</small>
+          </div>
+          <div class="risk-item risk-caution" data-stage="caution">
+            <span>注意</span><small>21〜25</small>
+          </div>
+          <div class="risk-item risk-warning" data-stage="warning">
+            <span>警戒</span><small>25〜28</small>
+          </div>
+          <div class="risk-item risk-severe" data-stage="severe">
+            <span>厳重警戒</span><small>28〜31</small>
+          </div>
+          <div class="risk-item risk-danger" data-stage="danger">
+            <span>危険</span><small>31以上</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="side-panel">
+      <div class="side-header">熱中症（WBGT）</div>
+      <div class="side-content">
+        <div class="side-status js-status">安全</div>
+        <div class="side-message js-message">適宜に水分補給</div>
+        <div class="side-wbgt-card">
+          <div class="wbgt-pill">WBGT</div>
+          <div class="side-wbgt js-wbgt">21.0</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
