@@ -20,20 +20,20 @@ body{background:#ffdb2d;font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Go
 .center-head{left:0;width:384px;overflow:hidden}
 .title{
   position:absolute;
-  left:14px;
+  left:10px;
   top:12px;
-  width:252px;
+  width:262px;
   overflow:hidden;
   text-overflow:clip;
-  font-size:15px;
+  font-size:14px;
   line-height:1;
   font-weight:1000;
-  letter-spacing:-.75px;
+  letter-spacing:-1px;
   white-space:nowrap;
 }
 .date-time{
   position:absolute;
-  right:6px;
+  right:4px;
   top:1px;
   width:104px;
   height:36px;
