@@ -62,7 +62,8 @@ function setWeather(data){
   }
 
   lastUpdatedAt=data.wbgtObservedAt||data.weatherObservedAt||data.updatedAt||null;
-  document.getElementById("updated-time").textContent=formatHHMM(lastUpdatedAt);
+  const upd=new Date(weatherData.updatedAt||Date.now());
+document.getElementById('updated-time').textContent=upd.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
 }
 
 async function loadLiveData(){
