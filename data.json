@@ -1,16 +1,18 @@
 {
   "location": "静岡市",
   "station": "50331",
-  "temperature": 26.0,
-  "humidity": 50,
-  "wbgt": 23.0,
-  "weatherObservedAt": "2026-07-14T15:00:00+09:00",
-  "wbgtObservedAt": "2026-07-14T15:00:00+09:00",
-  "updatedAt": "2026-07-14T15:00:00+09:00",
   "source": {
     "temperature": "気象庁",
     "humidity": "気象庁",
     "wbgt": "環境省"
   },
-  "errors": []
+  "temperature": 29.6,
+  "humidity": 75.0,
+  "weatherObservedAt": "2026-07-15T14:40:00+09:00",
+  "wbgt": 23.0,
+  "wbgtObservedAt": "2026-07-14T15:00:00+09:00",
+  "updatedAt": "2026-07-15T14:53:23+09:00",
+  "errors": [
+    "WBGT: 静岡のWBGT実況値を取得できませんでした: 429 Client Error:  for url: https://www.wbgt.env.go.jp/api/v1/getSurveyData?data_type=1&location_type=1&wbgt_nos=50331&date_from=20260715025323&date_to=20260715145323"
+  ]
 }
