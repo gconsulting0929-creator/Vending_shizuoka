@@ -6,13 +6,15 @@
     "humidity": "気象庁",
     "wbgt": "環境省"
   },
-  "temperature": 29.1,
-  "humidity": 73.0,
-  "weatherObservedAt": "2026-07-27T08:20:00+09:00",
+  "temperature": 25.5,
+  "humidity": 92.0,
+  "weatherObservedAt": "2026-07-27T20:50:00+09:00",
   "wbgt": 26.6,
   "wbgtObservedAt": "2026-07-27T08:00:00+09:00",
   "wbgtClass": 1,
   "wbgtQuality": 4.0,
-  "updatedAt": "2026-07-27T08:34:15+09:00",
-  "errors": []
+  "updatedAt": "2026-07-27T21:00:14+09:00",
+  "errors": [
+    "WBGT: 静岡のWBGT実況値を取得できませんでした: 429 Client Error:  for url: https://www.wbgt.env.go.jp/api/v1/getSurveyData?data_type=0&location_type=1&wbgt_nos=50331&date_from=20260727090013&date_to=20260727210013 / 429 Client Error:  for url: https://www.wbgt.env.go.jp/api/v1/getSurveyData?data_type=1&location_type=1&wbgt_nos=50331&date_from=20260727090013&date_to=20260727210013"
+  ]
 }
