@@ -7,12 +7,12 @@
     "wbgt": "環境省"
   },
   "temperature": 30.8,
-  "humidity": 51.0,
-  "weatherObservedAt": "2026-08-16T11:00:00+09:00",
-  "wbgt": 26.9,
-  "wbgtObservedAt": "2026-08-16T10:00:00+09:00",
+  "humidity": 53.0,
+  "weatherObservedAt": "2026-08-16T12:00:00+09:00",
+  "wbgt": 27.3,
+  "wbgtObservedAt": "2026-08-16T11:00:00+09:00",
   "wbgtClass": 1,
   "wbgtQuality": 4.0,
-  "updatedAt": "2026-08-16T11:11:42+09:00",
+  "updatedAt": "2026-08-16T12:13:36+09:00",
   "errors": []
 }
