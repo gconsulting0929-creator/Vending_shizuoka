@@ -8,11 +8,11 @@
   },
   "temperature": 24.7,
   "humidity": 85.0,
-  "weatherObservedAt": "2026-08-17T04:40:00+09:00",
+  "weatherObservedAt": "2026-08-17T04:50:00+09:00",
   "wbgt": 23.2,
   "wbgtObservedAt": "2026-08-17T04:00:00+09:00",
   "wbgtClass": 1,
   "wbgtQuality": 4.0,
-  "updatedAt": "2026-08-17T04:49:30+09:00",
+  "updatedAt": "2026-08-17T04:59:27+09:00",
   "errors": []
 }
