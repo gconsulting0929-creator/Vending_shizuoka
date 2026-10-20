@@ -6,13 +6,13 @@
     "humidity": "気象庁",
     "wbgt": "環境省"
   },
-  "temperature": 27.1,
-  "humidity": 74.0,
-  "weatherObservedAt": "2026-10-20T15:20:00+09:00",
-  "wbgt": 25.2,
-  "wbgtObservedAt": "2026-10-20T15:00:00+09:00",
+  "temperature": 23.6,
+  "humidity": 98.0,
+  "weatherObservedAt": "2026-10-20T20:50:00+09:00",
+  "wbgt": 23.8,
+  "wbgtObservedAt": "2026-10-20T20:00:00+09:00",
   "wbgtClass": 1,
   "wbgtQuality": 4.0,
-  "updatedAt": "2026-10-20T15:33:33+09:00",
+  "updatedAt": "2026-10-20T21:02:47+09:00",
   "errors": []
 }
