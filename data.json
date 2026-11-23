@@ -6,14 +6,14 @@
     "humidity": "気象庁",
     "wbgt": "環境省"
   },
-  "temperature": 5.4,
-  "humidity": 63.0,
-  "weatherObservedAt": "2026-11-23T06:50:00+09:00",
+  "temperature": 14.3,
+  "humidity": 44.0,
+  "weatherObservedAt": "2026-11-23T11:30:00+09:00",
   "wbgt": 22.0,
   "wbgtObservedAt": "2026-10-22T00:00:00+09:00",
   "wbgtClass": 1,
   "wbgtQuality": 4.0,
-  "updatedAt": "2026-11-23T07:07:13+09:00",
+  "updatedAt": "2026-11-23T11:37:58+09:00",
   "errors": [
     "WBGT: 静岡のWBGT実況値を取得できませんでした: "
   ]
